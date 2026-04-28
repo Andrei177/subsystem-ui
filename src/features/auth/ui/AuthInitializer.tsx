@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { authApi } from "@/features/auth/api/auth-api";
-import { useAuthStore } from "@/features/auth/model/auth-store";
+import { useAuthStore } from "../model/auth-store";
+import { authApi } from "../api/auth-api";
 
 type AuthInitializerProps = {
   children: React.ReactNode;

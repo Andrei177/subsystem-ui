@@ -1,7 +1,6 @@
+import type { UserRole } from "@/entities/user";
+import { useAuthStore } from "@/features/auth";
 import { Navigate, Outlet, useLocation } from "react-router";
-import { useAuthStore } from "@/features/auth/model/auth-store";
-import type { UserRole } from "@/entities/user/model/types";
-
 type ProtectedRouteProps = {
   allowedRoles?: UserRole[];
   redirectTo?: string;

@@ -1,7 +1,7 @@
-import { api } from "@/shared/api/api";
-import type { User } from "@/entities/user/model/types";
+import type { User } from "@/entities/user";
+import { api } from "@/shared";
 
-type AuthRequest = {
+export type AuthRequest = {
   userName: string;
   password: string;
 };

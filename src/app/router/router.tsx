@@ -7,29 +7,26 @@ import { SignUp } from "@/pages/signup";
 import { ContractRequestCreate } from "@/pages/contract-request-create";
 import { ContractRequestInfo } from "@/pages/contract-request-info";
 import { AdminRequests } from "@/pages/admin-requests";
+import { Routes } from "@/shared";
 
 export const router = createBrowserRouter([
   {
-    path: "/signin",
+    path: Routes.SIGNIN,
     element: <SignIn />,
   },
   {
-    path: "/signup",
+    path: Routes.SIGNUP,
     element: <SignUp />,
   },
   {
-    element: (
-      <ProtectedRoute
-        allowedRoles={["REPRESENTATIVE", "ADMIN", "SUPER_ADMIN"]}
-      />
-    ),
+    element: <ProtectedRoute allowedRoles={["USER", "ADMIN", "SUPER_ADMIN"]} />,
     children: [
       {
-        path: "/contracts/request/create",
+        path: Routes.CONTRACT_REQUEST_CREATE,
         element: <ContractRequestCreate />,
       },
       {
-        path: "/contracts/request",
+        path: Routes.CONTRACT_REQUEST,
         element: <ContractRequestInfo />,
       },
     ],
@@ -39,12 +36,12 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute
         allowedRoles={["ADMIN", "SUPER_ADMIN"]}
-        forbiddenRedirectTo="/contracts/request"
+        forbiddenRedirectTo={Routes.CONTRACT_REQUEST}
       />
     ),
     children: [
       {
-        path: "/admin/requests",
+        path: Routes.ADMIN_REQUESTS,
         element: <AdminRequests />,
       },
     ],
