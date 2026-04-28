@@ -1,3 +1,10 @@
+import { NavBar } from "@/widgets/navbar";
+
 export const AdminRequests = () => {
-  return <div>AdminRequests</div>;
+  return (
+    <>
+      <NavBar />
+      <div>AdminRequests</div>
+    </>
+  );
 };

@@ -1,3 +1,10 @@
+import { NavBar } from "@/widgets/navbar";
+
 export const ContractRequestCreate = () => {
-  return <div>ContractRequestCreate</div>;
+  return (
+    <>
+      <NavBar />
+      <div>ContractRequestCreate</div>
+    </>
+  );
 };

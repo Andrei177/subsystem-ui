@@ -1,3 +1,10 @@
+import { NavBar } from "@/widgets/navbar";
+
 export const ContractRequestInfo = () => {
-  return <div>ContractRequestInfo</div>;
+  return (
+    <>
+      <NavBar />
+      <div>ContractRequestInfo</div>
+    </>
+  );
 };
