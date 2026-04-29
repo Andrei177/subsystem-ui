@@ -44,7 +44,7 @@ export const AuthForm = ({ authVariant }: Props) => {
     }
 
     if (role === "USER") {
-      navigate(Routes.CONTRACT_REQUEST);
+      navigate(Routes.CONTRACT_REQUESTS);
       return;
     }
 

@@ -68,8 +68,8 @@ export const NavBar = () => {
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <Link
-                  to={Routes.CONTRACT_REQUEST}
-                  className={linkClassName(Routes.CONTRACT_REQUEST)}
+                  to={Routes.CONTRACT_REQUESTS}
+                  className={linkClassName(Routes.CONTRACT_REQUESTS)}
                 >
                   Заявки
                 </Link>

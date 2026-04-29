@@ -16,6 +16,7 @@ export {
   NavigationMenuList,
 } from "./ui/navigation-menu";
 export { Textarea } from "./ui/textarea";
+export { Badge } from "./ui/badge";
 
 export { api } from "./api/api";
 

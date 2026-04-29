@@ -8,11 +8,12 @@ import { ContractRequestCreate } from "@/pages/contract-request-create";
 import { ContractRequestsInfo } from "@/pages/contract-requests-info";
 import { AdminRequests } from "@/pages/admin-requests";
 import { Routes } from "@/shared";
+import { ContractRequest } from "@/pages/contract-request";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to={Routes.CONTRACT_REQUEST} />,
+    element: <Navigate to={Routes.CONTRACT_REQUESTS} />,
   },
   {
     path: Routes.SIGNIN,
@@ -30,8 +31,12 @@ export const router = createBrowserRouter([
         element: <ContractRequestCreate />,
       },
       {
-        path: Routes.CONTRACT_REQUEST,
+        path: Routes.CONTRACT_REQUESTS,
         element: <ContractRequestsInfo />,
+      },
+      {
+        path: Routes.CONTRACT_REQUESTS_ID,
+        element: <ContractRequest />,
       },
     ],
   },
@@ -40,7 +45,7 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute
         allowedRoles={["ADMIN", "SUPER_ADMIN"]}
-        forbiddenRedirectTo={Routes.CONTRACT_REQUEST}
+        forbiddenRedirectTo={Routes.CONTRACT_REQUESTS}
       />
     ),
     children: [
