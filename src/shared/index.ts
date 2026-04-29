@@ -15,6 +15,7 @@ export {
   NavigationMenuLink,
   NavigationMenuList,
 } from "./ui/navigation-menu";
+export { Textarea } from "./ui/textarea";
 
 export { api } from "./api/api";
 

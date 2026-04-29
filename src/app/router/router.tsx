@@ -1,15 +1,19 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 
 import { ProtectedRoute } from "./ProtectedRoute";
 
 import { SignIn } from "@/pages/signin";
 import { SignUp } from "@/pages/signup";
 import { ContractRequestCreate } from "@/pages/contract-request-create";
-import { ContractRequestInfo } from "@/pages/contract-request-info";
+import { ContractRequestsInfo } from "@/pages/contract-requests-info";
 import { AdminRequests } from "@/pages/admin-requests";
 import { Routes } from "@/shared";
 
 export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to={Routes.CONTRACT_REQUEST} />,
+  },
   {
     path: Routes.SIGNIN,
     element: <SignIn />,
@@ -27,7 +31,7 @@ export const router = createBrowserRouter([
       },
       {
         path: Routes.CONTRACT_REQUEST,
-        element: <ContractRequestInfo />,
+        element: <ContractRequestsInfo />,
       },
     ],
   },

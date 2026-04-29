@@ -1,6 +1,6 @@
 import { NavBar } from "@/widgets/navbar";
 
-export const ContractRequestInfo = () => {
+export const ContractRequestsInfo = () => {
   return (
     <>
       <NavBar />
