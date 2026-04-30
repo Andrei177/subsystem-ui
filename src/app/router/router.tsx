@@ -9,6 +9,7 @@ import { ContractRequestsInfo } from "@/pages/contract-requests-info";
 import { AdminRequests } from "@/pages/admin-requests";
 import { Routes } from "@/shared";
 import { ContractRequest } from "@/pages/contract-request";
+import { AdminRequestReview } from "@/pages/admin-request-review";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
         path: Routes.CONTRACT_REQUESTS_ID,
         element: <ContractRequest />,
       },
+      {
+        path: Routes.ADMIN_CONTRACT_REQUESTS_ID,
+        element: <AdminRequestReview />,
+      },
     ],
   },
 
@@ -50,7 +55,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: Routes.ADMIN_REQUESTS,
+        path: Routes.VIEW_REQUESTS,
         element: <AdminRequests />,
       },
     ],

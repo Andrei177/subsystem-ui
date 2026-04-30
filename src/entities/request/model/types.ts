@@ -68,3 +68,48 @@ export type ContractRequestInfo = {
   reviewedAt: string | null;
   contract: Contract | null;
 };
+
+export type PageResponse<T> = {
+  items: T[];
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+};
+
+export type AdminContractRequestShort = {
+  requestId: number;
+  status: ContractRequestStatus;
+  appName: string;
+  appUrl: string;
+  contactEmail: string;
+  createdAt: string;
+  reviewedAt: string | null;
+};
+
+export type RateLimitPeriod =
+  | "SECOND"
+  | "MINUTE"
+  | "HOUR"
+  | "DAY"
+  | "WEEK"
+  | "MONTH";
+
+export type ApproveContractRequestReq = {
+  approvedOperationGroups: string[];
+  rateLimitValue: number;
+  rateLimitPeriod: RateLimitPeriod;
+};
+
+export type ApproveContractRequestRes = {
+  contractId: number;
+  message: string;
+};
+
+export type RejectContractRequestReq = {
+  rejectReason: string;
+};
+
+export type RejectContractRequestRes = {
+  message: string;
+};

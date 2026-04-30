@@ -91,10 +91,10 @@ export const NavBar = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    to={Routes.ADMIN_REQUESTS}
-                    className={linkClassName(Routes.ADMIN_REQUESTS)}
+                    to={Routes.VIEW_REQUESTS}
+                    className={linkClassName(Routes.VIEW_REQUESTS)}
                   >
-                    Одобрение заявок
+                    Рассмотрение заявок
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>

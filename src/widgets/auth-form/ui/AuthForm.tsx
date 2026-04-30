@@ -39,7 +39,7 @@ export const AuthForm = ({ authVariant }: Props) => {
 
   const redirectByRole = (role: string) => {
     if (role === "ADMIN" || role === "SUPER_ADMIN") {
-      navigate(Routes.ADMIN_REQUESTS);
+      navigate(Routes.VIEW_REQUESTS);
       return;
     }
 
