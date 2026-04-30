@@ -6,7 +6,14 @@ import type {
   ContractRequestInfo as ContractRequestInfoType,
   ContractRequestStatus,
 } from "@/entities/request";
-import { Badge, Card, CardContent, CardHeader, CardTitle } from "@/shared";
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/shared";
 
 import { contractRequestInfoApi } from "../api/contractRequestInfoApi";
 
@@ -69,8 +76,10 @@ const getErrorMessage = (err: unknown) => {
 export const ContractRequestInfo = ({ requestId }: Props) => {
   const [request, setRequest] = useState<ContractRequestInfoType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isContractReceivedLoading, setIsContractReceivedLoading] =
+    useState(false);
 
-  useEffect(() => {
+  const loadRequest = (requestId: number) => {
     contractRequestInfoApi
       .getById(requestId)
       .then((res) => {
@@ -82,6 +91,27 @@ export const ContractRequestInfo = ({ requestId }: Props) => {
       .finally(() => {
         setIsLoading(false);
       });
+  };
+
+  const handleContractReceived = (contractId: number) => {
+    setIsContractReceivedLoading(true);
+
+    contractRequestInfoApi
+      .markContractReceived(contractId)
+      .then((res) => {
+        toast.success(res.data.message);
+        return loadRequest(requestId);
+      })
+      .catch((err) => {
+        toast.error(getErrorMessage(err));
+      })
+      .finally(() => {
+        setIsContractReceivedLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    loadRequest(requestId);
   }, [requestId]);
 
   if (isLoading) {
@@ -206,7 +236,11 @@ export const ContractRequestInfo = ({ requestId }: Props) => {
         )}
 
       {request.contract ? (
-        <ContractInfo contract={request.contract} />
+        <ContractInfo
+          contract={request.contract}
+          onContractReceived={handleContractReceived}
+          isContractReceivedLoading={isContractReceivedLoading}
+        />
       ) : (
         <Card>
           <CardHeader>
@@ -244,7 +278,7 @@ const InfoItem = ({ label, value, isLink = false }: InfoItemProps) => {
           {value}
         </a>
       ) : (
-        <span className="break-words text-base font-medium">{value}</span>
+        <span className="wrap-break-word text-base font-medium">{value}</span>
       )}
     </div>
   );
@@ -268,13 +302,39 @@ const InfoBlock = ({ label, value }: InfoBlockProps) => {
 
 type ContractInfoProps = {
   contract: NonNullable<ContractRequestInfoType["contract"]>;
+  onContractReceived: (contractId: number) => void;
+  isContractReceivedLoading: boolean;
 };
 
-const ContractInfo = ({ contract }: ContractInfoProps) => {
+const ContractInfo = ({
+  contract,
+  onContractReceived,
+  isContractReceivedLoading,
+}: ContractInfoProps) => {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-xl">Сформированный контракт</CardTitle>
+      <CardHeader className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <CardTitle className="text-xl">Сформированный контракт</CardTitle>
+
+          {contract.clientSecret && (
+            <p className="mt-1 text-sm text-muted-foreground">
+              После сохранения Client Secret подтвердите получение контракта.
+            </p>
+          )}
+        </div>
+
+        {contract.clientSecret && (
+          <Button
+            type="button"
+            onClick={() => onContractReceived(contract.contractId)}
+            disabled={isContractReceivedLoading}
+          >
+            {isContractReceivedLoading
+              ? "Подтверждение..."
+              : "Контракт получен"}
+          </Button>
+        )}
       </CardHeader>
 
       <CardContent className="flex flex-col gap-6">
@@ -340,6 +400,12 @@ const ContractInfo = ({ contract }: ContractInfoProps) => {
                     {endpoint.requestContentType && (
                       <span>Content-Type: {endpoint.requestContentType}</span>
                     )}
+                  </div>
+
+                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                    <span>Краткое описание: {endpoint.summary}</span>
+
+                    <span>Описание: {endpoint.description}</span>
                   </div>
 
                   <details className="rounded-lg bg-muted/50 p-3">

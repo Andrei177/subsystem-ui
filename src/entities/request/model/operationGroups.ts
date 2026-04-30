@@ -31,6 +31,10 @@ export const OPERATION_GROUPS = [
     value: "UPDATE_USER_INFO",
     label: "Обновление информации о пользователе",
   },
+  {
+    value: "OAUTH",
+    label: "OAuth аутентификация",
+  },
 ] as const;
 
 export type OperationGroup = (typeof OPERATION_GROUPS)[number]["value"];

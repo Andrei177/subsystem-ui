@@ -29,6 +29,8 @@ export type ContractEndpoint = {
   method: string;
   operationGroup: string;
   requiresAuth: boolean;
+  summary: string;
+  description: string;
 
   securityRequirements: unknown;
   requestContentType: string | null;
