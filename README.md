@@ -27,6 +27,7 @@ Frontend-часть дипломного проекта: интерфейс дл
 - **Feature-Sliced Design (FSD)**
 
 ## Архитектура (FSD)
+```text
 src/
 ├── app/          # Провайдеры, роутер, глобальные стили
 ├── pages/        # Страницы (signin, signup, contract-request-create, admin-*)
@@ -34,13 +35,13 @@ src/
 ├── features/     # Бизнес-фичи (auth, create-request, admin-contract-request-review и т.д.)
 ├── entities/     # Бизнес-сущности (user, request)
 └── shared/       # UI-kit, api, lib, config
-
+``` 
 ## Запуск
 
 ```bash
 npm install
 npm run dev
-
+```
 По умолчанию API ожидается на http://localhost:8081.
 ## Backend
 Серверная часть написана на Java 21 + Spring Boot 4 (WebFlux) + PostgreSQL + Redis.
